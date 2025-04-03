@@ -15,7 +15,7 @@ bearer_scheme = HTTPBearer()
 router = APIRouter()
 
 
-@router.post("/create", response_model=Visited, status_code=201)
+@router.post("/create", tags=['Visited'], response_model=Visited, status_code=201)
 @inject
 async def create_visited(
     visited: VisitedIn,
@@ -56,7 +56,7 @@ async def create_visited(
 
     return new_visited.model_dump() if new_visited else {}
 
-@router.put("/{visited_id}", response_model=Visited, status_code=201)
+@router.put("/{visited_id}", tags=['Visited'], response_model=Visited, status_code=201)
 @inject
 async def update_visited(
     visited_id: int,
@@ -109,7 +109,7 @@ async def update_visited(
     raise HTTPException(status_code=404, detail="Visited not found")
 
 
-@router.delete("/{visited_id}", status_code=204)
+@router.delete("/{visited_id}", tags=['Visited'], status_code=204)
 @inject
 async def delete_visited(
     visited_id: int,
@@ -151,7 +151,7 @@ async def delete_visited(
     raise HTTPException(status_code=404, detail="Visited not found")
 
 
-@router.get("/{visited_id}", response_model=Visited, status_code=200)
+@router.get("/{visited_id}", tags=['Visited'], response_model=Visited, status_code=200)
 @inject
 async def get_visited_by_id(
     visited_id: int,
@@ -174,7 +174,7 @@ async def get_visited_by_id(
 
     raise HTTPException(status_code=404, detail="Visited not found")
 
-@router.get("/all/{all}", response_model=Iterable[Visited], status_code=200)
+@router.get("/all/{all}", tags=['Visited'], response_model=Iterable[Visited], status_code=200)
 @inject
 async def get_all_visited(
     service: IVisitedService = Depends(Provide[Container.visited_service]),
@@ -193,7 +193,7 @@ async def get_all_visited(
 
 
 
-@router.get("/country/{country_name}", response_model=Iterable[Visited], status_code=200)
+@router.get("/country/{country_name}", tags=['Visited'], response_model=Iterable[Visited], status_code=200)
 
 @inject
 async def get_visited_by_country(
@@ -214,7 +214,7 @@ async def get_visited_by_country(
     return visited
 
 
-@router.get("/user/{user_id}", response_model=Iterable[Visited], status_code=200)
+@router.get("/user/{user_id}", tags=['Visited'], response_model=Iterable[Visited], status_code=200)
 
 @inject
 async def get_visited_by_user(

@@ -11,7 +11,7 @@ from countryapi.infrastructure.services.iuser import IUserService
 router = APIRouter()
 
 
-@router.post("/register", response_model=UserDTO, status_code=201)
+@router.post("/register", tags=['User'], response_model=UserDTO, status_code=201)
 @inject
 async def register_user(
     user: UserIn,
@@ -40,7 +40,7 @@ async def register_user(
 
 
 
-@router.post("/token", response_model=TokenDTO, status_code=200)
+@router.post("/token", tags=['User'], response_model=TokenDTO, status_code=200)
 @inject
 async def authenticate_user(
     user: UserIn,

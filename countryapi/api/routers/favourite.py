@@ -16,7 +16,7 @@ bearer_scheme = HTTPBearer()
 router = APIRouter()
 
 
-@router.post("/create", response_model=Favourite, status_code=201)
+@router.post("/create", tags=['Favourite'], response_model=Favourite, status_code=201)
 @inject
 async def create_favourite(
     favourite: FavouriteIn,
@@ -61,7 +61,7 @@ async def create_favourite(
 
     return new_favourite.model_dump() if new_favourite else {}
 
-@router.put("/{favourite_id}", response_model=Favourite, status_code=201)
+@router.put("/{favourite_id}", tags=['Favourite'], response_model=Favourite, status_code=201)
 @inject
 async def update_favourite(
     favourite_id: int,
@@ -113,7 +113,7 @@ async def update_favourite(
     raise HTTPException(status_code=404, detail="Favourite not found")
 
 
-@router.delete("/{favourite_id}", status_code=204)
+@router.delete("/{favourite_id}", tags=['Favourite'], status_code=204)
 @inject
 async def delete_favourite(
     favourite_id: int,
@@ -154,7 +154,7 @@ async def delete_favourite(
     raise HTTPException(status_code=404, detail="Favourite not found")
 
 
-@router.get("/{favourite_id}", response_model=Favourite, status_code=200)
+@router.get("/{favourite_id}", tags=['Favourite'], response_model=Favourite, status_code=200)
 @inject
 async def get_favourite_by_id(
     favourite_id: int,
@@ -177,7 +177,7 @@ async def get_favourite_by_id(
 
     raise HTTPException(status_code=404, detail="Favourite not found")
 
-@router.get("/all/{all}", response_model=Iterable[Favourite], status_code=200)
+@router.get("/all/{all}", tags=['Favourite'], response_model=Iterable[Favourite], status_code=200)
 @inject
 async def get_all_favourites(
     service: IFavouriteService = Depends(Provide[Container.favourite_service]),
@@ -195,7 +195,7 @@ async def get_all_favourites(
     return favourites
 
 
-@router.get("/ranking/{ranking}", response_model=Any, status_code=200)
+@router.get("/ranking/{ranking}", tags=['Favourite'], response_model=Any, status_code=200)
 @inject
 async def get_ranking(
     service: IFavouriteService = Depends(Provide[Container.favourite_service]),
@@ -212,7 +212,7 @@ async def get_ranking(
 
     return ranking
 
-@router.get("/country/{country_name}", response_model=Iterable[Favourite], status_code=200)
+@router.get("/country/{country_name}", tags=['Favourite'], response_model=Iterable[Favourite], status_code=200)
 
 @inject
 async def get_favourite_by_country(
@@ -233,7 +233,7 @@ async def get_favourite_by_country(
     return favourite
 
 
-@router.get("/user/{user_id}", response_model=Iterable[Favourite], status_code=200)
+@router.get("/user/{user_id}", tags=['Favourite'], response_model=Iterable[Favourite], status_code=200)
 
 @inject
 async def get_favourite_by_user(

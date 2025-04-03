@@ -17,7 +17,7 @@ bearer_scheme = HTTPBearer()
 router = APIRouter()
 
 
-@router.post("/create", response_model=Country, status_code=201)
+@router.post("/create", tags=['Country'], response_model=Country, status_code=201)
 @inject
 async def create_country(
     country: CountryIn,
@@ -71,7 +71,7 @@ async def create_country(
 
 
 
-@router.put("/{country_id}", response_model=Country, status_code=201)
+@router.put("/{country_id}", tags=['Country'], response_model=Country, status_code=201)
 @inject
 async def update_country(
     country_id: int,
@@ -126,7 +126,7 @@ async def update_country(
 
 
 
-@router.delete("/{country_id}", status_code=204)
+@router.delete("/{country_id}", tags=['Country'], status_code=204)
 @inject
 async def delete_country(
     country_id: int,
@@ -169,7 +169,7 @@ async def delete_country(
 
 
 
-@router.get("/all", response_model=Iterable[CountryDTO], status_code=200)
+@router.get("/all", tags=['Country'], response_model=Iterable[CountryDTO], status_code=200)
 @inject
 async def get_all_countries(
     service: ICountryService = Depends(Provide[Container.country_service]),
@@ -189,6 +189,7 @@ async def get_all_countries(
 
 @router.get(
         "/continent/summary/by",
+        tags=['Country'],
         response_model=Any,
         status_code=200,
 )
@@ -212,6 +213,7 @@ async def get_summary_by_continent(
 
 @router.get(
         "/continent/summary/all",
+        tags=['Country'],
         response_model=Any,
         status_code=200,
 )
@@ -235,6 +237,7 @@ async def get_summary_by_all_continents(
 
 @router.get(
         "/continent/{continent_id}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -259,6 +262,7 @@ async def get_countries_by_continent(
 
 @router.get(
         "/{country_id}",
+        tags=['Country'],
         response_model=CountryDTO,
         status_code=200,
 )
@@ -288,6 +292,7 @@ async def get_country_by_id(
 
 @router.get(
         "/user/{user_id}",
+        tags=['Country'],
         response_model=list[Country],
         status_code=200,
 )
@@ -313,6 +318,7 @@ async def get_countries_by_user(
 
 @router.get(
         "/name/{name}",
+        tags=['Country'],
         response_model=CountryDTO,
         status_code=200,
 )
@@ -341,6 +347,7 @@ async def get_countries_by_name(
 
 @router.get(
         "/inhabitants/{inhabitants}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -364,6 +371,7 @@ async def get_countries_by_inhabitants(
 
 @router.get(
         "/inhabitants/filter/{filter}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -389,6 +397,7 @@ async def filter_countries_by_inhabitants(
 
 @router.get(
         "/language/{language}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -412,6 +421,7 @@ async def get_countries_by_language(
 
 @router.get(
         "/area/{area}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -435,6 +445,7 @@ async def get_countries_by_area(
 
 @router.get(
         "/area/filter/{filter}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -461,6 +472,7 @@ async def filter_countries_by_area(
 
 @router.get(
         "/pkb/{pkb}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )
@@ -484,6 +496,7 @@ async def get_countries_by_pkb(
 
 @router.get(
         "/pkb/filter/{filter}",
+        tags=['Country'],
         response_model=Iterable[Country],
         status_code=200,
 )

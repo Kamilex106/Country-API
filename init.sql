@@ -1,5 +1,4 @@
-docker exec -it db psql -U postgres
-\c app;
+
 
 INSERT INTO users (email,name,password) VALUES
     ('temp@mail.pl','Kamil','haslo1'),

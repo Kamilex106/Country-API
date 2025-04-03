@@ -10,7 +10,7 @@ from countryapi.infrastructure.services.icontinent import IContinentService
 router = APIRouter()
 
 
-@router.post("/create", response_model=Continent, status_code=201)
+@router.post("/create", tags=['Continent'], response_model=Continent, status_code=201)
 @inject
 async def create_continent(
     continent: ContinentIn,
@@ -39,7 +39,7 @@ async def create_continent(
     )
 
 
-@router.put("/{continent_id}", response_model=Continent, status_code=201)
+@router.put("/{continent_id}", tags=['Continent'], response_model=Continent, status_code=201)
 @inject
 async def update_continent(
     continent_id: int,
@@ -71,7 +71,7 @@ async def update_continent(
     raise HTTPException(status_code=404, detail="Continent not found")
 
 
-@router.delete("/{continent_id}", status_code=204)
+@router.delete("/{continent_id}", tags=['Continent'], status_code=204)
 @inject
 async def delete_continent(
     continent_id: int,
@@ -98,7 +98,7 @@ async def delete_continent(
     raise HTTPException(status_code=404, detail="Continent not found")
 
 
-@router.get("/all", response_model=Iterable[Continent], status_code=200)
+@router.get("/all", tags=['Continent'], response_model=Iterable[Continent], status_code=200)
 @inject
 async def get_all_continents(
     service: IContinentService = Depends(Provide[Container.continent_service]),
@@ -117,7 +117,7 @@ async def get_all_continents(
     return continents
 
 
-@router.get("/{continent_id}", response_model=Continent, status_code=200)
+@router.get("/{continent_id}", tags=['Continent'], response_model=Continent, status_code=200)
 @inject
 async def get_continent_by_id(
     continent_id: int,
@@ -142,7 +142,7 @@ async def get_continent_by_id(
     raise HTTPException(status_code=404, detail="Continent not found")
 
 
-@router.get("/alias/{alias}", response_model=Continent, status_code=200)
+@router.get("/alias/{alias}", tags=['Continent'], response_model=Continent, status_code=200)
 @inject
 async def get_continent_by_alias(
     alias: str,

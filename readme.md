@@ -1,28 +1,41 @@
 # Country API
 
-Serwis geograficzno-informacyjny
+Geographical Information Service  
 Python + FastAPI
 
-## Lista funkcjonalności
-- CRUD + logowanie
-- Listy krajów odwiedzonych przez użytkowników
-- Listy krajów ulubionych przez użytkowników + ranking
-- Podsumowania kontynentów
+## List of functionalities
+- CRUD + authentication  
+- Lists of countries visited by users  
+- Lists of users favorite countries + ranking  
+- Continent summaries
 
-## Stos technologiczny
+## Technology stack
 - Python 3.12.7
 - PostgreSQL 17.0
 - Docker
 
-## Jednostki w Country
-- inhabitants (mieszkańcy) - mln
-- area (powierzchnia calkowita kraju) - km^2
-- pkb (produkt krajowy brutto) - mld USD
+## Units in Country
+- inhabitants (residents) - million  
+- area (total area of the country) - km²  
+- GDP (gross domestic product) - billion USD
 
-## Przydatne polecenia
-- Instalacja zależności produkcyjnych: `pip install -r requirements.txt`
-- Instalacja zależności developerskich: `pip install -r requirements-dev.txt`
-- Uruchomienie serwera aplikacyjnego: `uvicorn countryapi.main:app --host 0.0.0.0 --port 8000`
-- Dokumentacja API (Swagger): `http://localhost:8000/docs`
-- Zbudowanie projektu za pomocą Docker'a: `docker compose build` (w przypadku odświeżenia cache: `docker compose build --no-cache`)
-- Uruchomienie projektu za pomocą Docker'a: `docker compose up` (w przypadku nieodświeżonego cache: `docker compose up --force-recreate`)
+## Quick Start
+- Navigate to the project directory  
+- Build the application using Docker: `docker compose build`  
+- Run the application using Docker: `docker compose up`  
+- Use the Swagger UI at `http://localhost:8000/docs`  
+- Create a new user using the `/register` endpoint  
+- Log in using the `/token` endpoint  
+- Use `Authorize` in Swagger by providing the appropriate `user_token` obtained from logging in  
+- Try out the other endpoints
+
+## Useful commands
+- Install production dependencies: `pip install -r requirements.txt`  
+- Install development dependencies: `pip install -r requirements-dev.txt`  
+- Start the application server: `uvicorn countryapi.main:app --host 0.0.0.0 --port 8000`  
+- API Documentation (Swagger): `http://localhost:8000/docs`  
+- Build the project using Docker: `docker compose build` (to refresh the cache: `docker compose build --no-cache`)  
+- Run the project using Docker: `docker compose up` (if the cache hasn't been refreshed: `docker compose up --force-recreate`)  
+- Manually execute database queries (example queries in the init.sql file):  
+  `-docker exec -it db psql -U postgres`  
+  `\c app;`
